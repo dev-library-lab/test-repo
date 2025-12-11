@@ -1,7 +1,24 @@
 os: linux
-language: generic
+language: java
+services:
+  - docker
+cache: bundler
 dist: focal
+install: skip
 
-vm:
-  create:
-    name: dev-library-lab-i3
+stages:
+  - name: test
+
+jobs:
+  include:
+    - stage: test
+      name: testing
+      script: true
+
+after_success:
+  - echo passed
+  - echo $TRAVIS_TEST_RESULT
+
+after_failure:
+  - echo failed
+  - echo $TRAVIS_TEST_RESULT
