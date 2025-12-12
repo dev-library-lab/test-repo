@@ -6,16 +6,16 @@ stages:
   - name: test
   - name: validate
 
-# ---------- LINT STAGE ----------
 jobs:
   include:
+    # ---------- START STAGE ----------
     - stage: start
       name: "Start check"
       language: minimal
       script:
         - echo "Start stage passed"
 
-# ---------- TEST STAGE ----------
+    # ---------- TEST STAGE ----------
     - stage: test
       name: "Python 3.8"
       language: python
@@ -37,7 +37,7 @@ jobs:
       script:
         - javac -version
 
-# ---------- VALIDATION STAGE ----------
+    # ---------- VALIDATION STAGE ----------
     - stage: validate
       name: "Final validation"
       language: minimal
