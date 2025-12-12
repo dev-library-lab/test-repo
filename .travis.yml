@@ -1,45 +1,12 @@
 os: linux
 dist: focal
 
-stages:
-  - name: start
-  - name: test
-  - name: validate
-
 jobs:
   include:
-    # ---------- START STAGE ----------
-    - stage: start
-      name: "Start check"
-      language: minimal
-      script:
-        - echo "Start stage passed"
-
-    # ---------- TEST STAGE ----------
     - stage: test
-      name: "Python 3.8"
-      language: python
-      python: "3.8"
-      script:
-        - python -c "print('Python OK')"
+      script: echo "Test job 1"
 
-    - stage: test
-      name: "NodeJS 12"
-      language: node_js
-      node_js: "12"
-      script:
-        - node -e "console.log('NodeJS OK')"
+    - script: echo "Test job 2"
 
-    - stage: test
-      name: "Java OpenJDK8"
-      language: java
-      jdk: openjdk8
-      script:
-        - javac -version
-
-    # ---------- VALIDATION STAGE ----------
-    - stage: validate
-      name: "Final validation"
-      language: minimal
-      script:
-        - echo "All stages completed successfully"
+    - stage: deploy
+      script: echo "Deploy job"
