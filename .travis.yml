@@ -4,9 +4,9 @@ dist: focal
 jobs:
   include:
     - stage: test
-      script: echo "Test job 1"
+      script: echo "Test job 11"
 
-    - script: echo "Test job 2"
+    - script: echo "Test job 22"
 
     - stage: deploy
-      script: echo "Deploy job"
+      script: echo "Deploy job11"
