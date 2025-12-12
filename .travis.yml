@@ -1,32 +1,52 @@
-dist: focal
 os: linux
+dist: focal
 
-language: php
-php:
-  - "5.6"
+stages:
+  - name: start
+  - name: test
+  - name: validate
 
+# ---------- LINT STAGE ----------
 jobs:
   include:
-    - name: "Python 3.8 job"
-      os: linux
-      dist: focal
+    - stage: start
+      name: "Start check"
+      language: minimal
+      script:
+        - echo "Start stage passed"
+
+# ---------- TEST STAGE ----------
+    - stage: test
+      name: "PHP 5.6"
+      language: php
+      php: "5.6"
+      script:
+        - php -v
+
+    - stage: test
+      name: "Python 3.8"
       language: python
       python: "3.8"
       script:
-        - python -c "print('Hi from Python!')"
+        - python -c "print('Python OK')"
 
-    - name: "NodeJS 12 job"
-      os: linux
-      dist: focal
+    - stage: test
+      name: "NodeJS 12"
       language: node_js
       node_js: "12"
       script:
-        - node -e "console.log('Hi from NodeJS!')"
+        - node -e "console.log('NodeJS OK')"
 
-    - name: "Java OpenJDK8 job"
-      os: linux
-      dist: focal
+    - stage: test
+      name: "Java OpenJDK8"
       language: java
       jdk: openjdk8
       script:
-        - javac -help
+        - javac -version
+
+# ---------- VALIDATION STAGE ----------
+    - stage: validate
+      name: "Final validation"
+      language: minimal
+      script:
+        - echo "All stages completed successfully"
