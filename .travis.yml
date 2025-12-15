@@ -1,12 +1,7 @@
 os: linux
+language: generic
 dist: focal
 
-jobs:
-  include:
-    - stage: test
-      script: echo "Test job 11"
-
-    - script: echo "Test job 22"
-
-    - stage: deploy
-      script: echo "Deploy job11"
+vm:
+  create:
+    name: dev-library-lab-i1
